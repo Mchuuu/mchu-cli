@@ -1,5 +1,5 @@
 {
-  "name": "cli",
+  "name": "@mchu-cli/cli",
   "version": "1.2.0",
   "description": "模板cli",
   "author": "mchuuu <731569485@qq.com>",
