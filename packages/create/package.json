@@ -1,0 +1,28 @@
+{
+  "name": "@mchu-cli/create",
+  "version": "1.1.1",
+  "description": "模板创建工具",
+  "author": "mchuuu <731569485@qq.com>",
+  "homepage": "https://github.com/Mchuuu/mchu-cli#readme",
+  "license": "ISC",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "test": "__tests__"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mchuuu/mchu-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/create.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/Mchuuu/mchu-cli/issues"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}
