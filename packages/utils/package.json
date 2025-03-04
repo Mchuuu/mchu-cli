@@ -1,5 +1,5 @@
 {
-  "name": "utils",
+  "name": "@mchu-cli/utils",
   "version": "2.0.0",
   "description": "util工具包",
   "author": "mchuuu <731569485@qq.com>",
@@ -29,5 +29,9 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
   }
 }
