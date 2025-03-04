@@ -1,6 +1,6 @@
 {
   "name": "@mchu-cli/create",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "模板创建快捷命令",
   "author": "mchuuu <731569485@qq.com>",
   "homepage": "https://github.com/Mchuuu/mchu-cli#readme",
