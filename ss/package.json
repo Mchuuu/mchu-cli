@@ -1,5 +1,5 @@
 {
-  "name": "<%= projectName %>",
+  "name": "ss",
   "version": "2.0.0",
   "type": "module",
   "scripts": {
@@ -13,8 +13,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
     "vite": "^6.1.0",
-    <% if (eslint) { -%>
-    "eslint":"^9.13.0",
-    <% } -%>
+    
+    "eslint":"^9.13.0"
+    
   }
 }

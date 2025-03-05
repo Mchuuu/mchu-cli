@@ -114,8 +114,7 @@ async function create() {
     cd ${projectName}
     npm install
     npm run dev
-    `,
-    "green"
+    `
   );
 }
 function sleep(timeout: number) {
