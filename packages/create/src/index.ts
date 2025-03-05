@@ -1,4 +1,4 @@
-import { select, input, confirm } from "@inquirer/prompts";
+import { select, input, confirm, checkbox } from "@inquirer/prompts";
 import { NpmPackage } from "@mchu-cli/utils";
 import { glob } from "glob";
 
@@ -26,6 +26,20 @@ async function create() {
   while (!projectName) {
     projectName = await input({ message: "请输入项目名" });
   }
+  // 安装可选配置
+  const options = await checkbox({
+    message: "请选择项目配置",
+    choices: [
+      {
+        name: "EsLint",
+        value: "eslint",
+      },
+      {
+        name: "Sass",
+        value: "sass",
+      },
+    ],
+  });
   // 项目目录不为空则清空
   if (fse.existsSync(projectName)) {
     const empty = await confirm({
@@ -56,10 +70,17 @@ async function create() {
   }
 
   const spinner = ora("project creating...").start();
-  const tempPath = path.join(templatePkg.targetPath, "template");
+  const tempPath = path.join(templatePkg.npmFilePath, "template");
   const targetPath = path.resolve(process.cwd(), projectName);
   fse.copySync(tempPath, targetPath);
-  spinner.stop();
+
+  const renderData: Record<string, any> = options.reduce(
+    (acc: Record<string, any>, cur) => {
+      acc[cur] = true;
+      return acc;
+    },
+    { projectName }
+  );
 
   // 渲染EJS模板
   const files = await glob("**", {
@@ -69,11 +90,33 @@ async function create() {
   });
   for (const file of files) {
     const filePath = path.resolve(targetPath, file);
-    const content = await ejs.renderFile(filePath, { projectName });
+    const content = await ejs.renderFile(filePath, renderData);
     fse.writeFileSync(filePath, content);
   }
+  // 根据option删除配置文件
+  const optionConfig = fse.readJSONSync(
+    path.resolve(targetPath, "options.config.json")
+  );
+  for (let key in optionConfig) {
+    if (!renderData[key]) {
+      optionConfig[key].files.forEach((file: string) => {
+        fse.removeSync(path.resolve(targetPath, file));
+      });
+    }
+  }
+  // 删除配置文件
+  fse.removeSync(path.resolve(targetPath, "options.config.json"));
 
-  console.log(projectTemplate, projectName);
+  spinner.stop();
+
+  console.log(
+    `${projectName} 创建成功，请运行以下命令进行项目初始化：
+    cd ${projectName}
+    npm install
+    npm run dev
+    `,
+    "green"
+  );
 }
 function sleep(timeout: number) {
   return new Promise((resolve) => {
