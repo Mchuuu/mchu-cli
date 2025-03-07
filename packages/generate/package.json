@@ -1,6 +1,6 @@
 {
   "name": "@mchu-cli/generate",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "description": "generate component with ai",
   "author": "mchuuu <731569485@qq.com>",
   "homepage": "https://github.com/Mchuuu/mchu-cli#readme",
