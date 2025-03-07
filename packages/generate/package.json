@@ -1,7 +1,7 @@
 {
-  "name": "@mchu-cli/cli",
+  "name": "@mchu-cli/generate",
   "version": "3.1.1",
-  "description": "模板cli",
+  "description": "generate component with ai",
   "author": "mchuuu <731569485@qq.com>",
   "homepage": "https://github.com/Mchuuu/mchu-cli#readme",
   "license": "ISC",
@@ -9,17 +9,18 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "directories": {
+    "lib": "lib",
     "test": "__tests__"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mchuuu/mchu-cli.git"
   },
-  "bin": {
-    "mchu-cli": "./dist/index.js"
-  },
   "scripts": {
-    "test": "node ./__tests__/cli.test.js"
+    "test": "node ./__tests__/generate.test.js"
   },
   "bugs": {
     "url": "https://github.com/Mchuuu/mchu-cli/issues"
@@ -29,10 +30,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@mchu-cli/create": "workspace:^",
-    "@mchu-cli/generate": "workspace:^",
-    "commander": "^13.1.0",
-    "fs-extra": "^11.3.0"
+    "@inquirer/prompts": "^7.3.2",
+    "dotenv": "^16.4.7",
+    "fs-extra": "^11.3.0",
+    "openai": "^4.86.2",
+    "ora": "^8.2.0",
+    "remark": "^15.0.1"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4"
